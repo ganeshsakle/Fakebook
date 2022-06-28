@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
-  resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'static_page#new'
+  #root to: 'users#sign_up' #'devise/sessions#new'
+  devise_for :users
 end
