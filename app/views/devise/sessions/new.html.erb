@@ -6,7 +6,7 @@
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Log-in</p>
 
-                  <form class="mx-1 mx-md-4">
+                  <div class="mx-1 mx-md-4">
                     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                     
                      <div class="d-flex flex-row align-items-center mb-4">
@@ -38,13 +38,12 @@
                       </div>
           
                     <% end %>
-                  </form>
-
-<%= render "devise/shared/links" %>
-
-          </div>
+                  </div>
+                    
+                     <%= render "devise/shared/links" %>
+                  </div>
+            </div>
         </div>
-      </div>
     </div>
   </div>
 </section>

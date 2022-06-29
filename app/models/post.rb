@@ -1,4 +1,10 @@
 class Post < ApplicationRecord
+  has_many_attached :image
+  has_many :comments , dependent: :destroy
+  belongs_to :user
+
+  default_scope -> { order(created_at: :desc) }
+  
   validates :text, presence: true, length: {maximum: 250}
   validates :user_id, presence: true
   default_scope -> { order(created_at: :desc) }
@@ -9,7 +15,5 @@ class Post < ApplicationRecord
                     size: { less_than: 5.megabytes,
                     message: "should be less than 5MB" }
 
-  has_many_attached :image
-  has_many :comments , dependent: :destroy
-  belongs_to :user
+
 end

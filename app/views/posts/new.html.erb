@@ -1,2 +1,6 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h3>From <%= current_user.name %></h3>
+<%= form_with(model: @post, local: true) do |f|%>
+  <%= f.text_area :content , placeholder:"write here.." %> <br>
+
+  <%= f.submit "create post", class:"btn btn-primary"%>
+<%end%>

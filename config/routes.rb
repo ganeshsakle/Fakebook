@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # get 'posts/save'
   # get 'posts/update'
   # get 'posts/destroy'
-  root to: 'static_page#new'
+  root to: 'posts#index'
   #root to: 'users#sign_up' #'devise/sessions#new'
   devise_for :users
   resources :posts
