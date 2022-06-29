@@ -1,6 +1,18 @@
 <% if user_signed_in? %>
-    <h1>Posts#index</h1>
-    <p>Find me in app/views/posts/index.html.erb</p>
+    <ul>
+        <% @posts.each do |post|%>
+        <li>
+          <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5><%= link_to current_user.name, class:"card-title"%></h5>    
+                    <p class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
+                    <p class="card-text"><%= post.content %></p>
+                </div>
+          </div>
+        </li>
+        <%end%>
+    </ul>
 <% else %>
     <% redirect_to new_user_session_path%>
 <% end%>
+

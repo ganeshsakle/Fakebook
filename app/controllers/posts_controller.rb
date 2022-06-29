@@ -15,9 +15,13 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(params[:content])
+    @post = Post.new(post_params) 
+    @post.user_id = current_user.id
     if @post.save
       flash[:success]="Post created"
+      redirect_to root_path
+    else
+      redirect_to new_post_path, notice: @post.errors.full_messages.first
     end
   end
 
@@ -30,8 +34,12 @@ class PostsController < ApplicationController
   def destroy
   end
 
+  def show
+    @posts =Post.all
+  end
+
   private
     def post_params
-      params.require(:post).permit(:content, :like)
+      params.require(:post).permit(:content)
     end
 end
