@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+    <ul>
+        <% @users.each do |user|%>
+            <% if user.id != current_user.id %>
+                <li>
+                <%= image_tag("images.png",
+                class:"rounded-circle",height:"35") %> 
+                <%= link_to user.name %>
+                </li>
+                <br>
+            <%end%>
+        <%end%>
+    </ul>
+<% else %>
+    <% redirect_to new_user_session_path%>
+<% end%>
+

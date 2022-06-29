@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # get 'posts/destroy'
   root to: 'posts#index'
   #root to: 'users#sign_up' #'devise/sessions#new'
+  get 'users' , to: 'static_page#index'
   devise_for :users
   resources :posts
   resources :comments
