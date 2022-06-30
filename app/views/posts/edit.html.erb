@@ -1,2 +1,6 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h3>Update</h3>
+<%= form_with(model: @post) do |f|%>
+  <%= f.text_area :content , placeholder:"write here.." %> <br>
+
+  <%= f.submit "Update post", class:"btn btn-primary"%>
+<%end%>

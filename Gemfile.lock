@@ -65,6 +65,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts_as_votable (0.13.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.18)
@@ -231,6 +232,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations (~> 0.9.8)
+  acts_as_votable (~> 0.13.2)
   better_errors (~> 2.9, >= 2.9.1)
   bootsnap (>= 1.4.4)
   byebug

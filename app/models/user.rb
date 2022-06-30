@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :posts, dependent: :destroy
   has_many :friends, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  acts_as_voter
 end

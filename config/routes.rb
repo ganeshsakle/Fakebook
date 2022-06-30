@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'notifications/create'
+  get 'notifications/update'
+  get 'notifications/edit'
+  get 'notifications/destroy'
+  get 'likes/create'
+  get 'likes/destroy'
   # get 'friends/new'
   # get 'friends/edit'
   # get 'friends/index'
@@ -20,8 +26,13 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   #root to: 'users#sign_up' #'devise/sessions#new'
   get 'users' , to: 'static_page#index'
+  get '/profile/:id', to: 'static_page#show'
   devise_for :users
-  resources :posts
   resources :comments
   resources :friends
+  resources :notifications
+
+  resources :posts do
+    resources :comments
+  end
 end

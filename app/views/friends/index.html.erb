@@ -1,2 +1,16 @@
-<h1>Friends#index</h1>
-<p>Find me in app/views/friends/index.html.erb</p>
+<% if user_signed_in? %>
+    <ul>
+        <% @friends.each do |friend|%>
+                <li>
+                <%= image_tag("images.png",
+                class:"rounded-circle",height:"35") %> 
+                <%= link_to friend.user.name %> <br>
+                <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
+                </li>
+                <br>
+        <%end%>
+    </ul>
+<% else %>
+    <% redirect_to new_user_session_path%>
+<% end%>
+

@@ -5,15 +5,13 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def index
     @posts = Post.all
-    if !current_user
-      redirect_to static_page_new_path
-    end
   end
-  
+
   def create
     @post = Post.new(post_params) 
     @post.user_id = current_user.id
@@ -29,9 +27,21 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
+      if @post.update(post_params)
+        flash[:success]="Post Updated"
+        redirect_to root_path
+      else
+        redirect_to edit_post_path, notice: @post.errors.full_messages.first
+      end
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      flash[:success]="Post deleted successfully!"
+      redirect_to posts_path
+    end
   end
 
   def show

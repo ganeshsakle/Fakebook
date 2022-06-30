@@ -1,18 +1,37 @@
 <% if user_signed_in? %>
-    <ul>
-        <% @posts.each do |post|%>
+  <ul>
+      <% @posts.each do |post|%>
         <li>
           <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5><%= link_to current_user.name, class:"card-title"%></h5>    
+                    <h5><%= link_to post.user.name , class:"card-title"%></h5>    
                     <p class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
                     <p class="card-text"><%= post.content %></p>
+                    <% if current_user.id == post.user_id%>
+                      <p><%= link_to "Edit", edit_post_url(post.id) %>
+                      <%= link_to "Delete", post_url(post.id), method: :delete %></p>
+                    <%end%>
                 </div>
           </div>
         </li>
-        <%end%>
-    </ul>
-<% else %>
-    <% redirect_to new_user_session_path%>
-<% end%>
+        <br>
+        <p>Comments</p>
+        <% post.comments.each do |comment| %>
+          <p>
+            <%=link_to comment.user.name %>
+            <%= comment.body %>
+          </p>
+        <% end %>
 
+        <%= form_with model: [ post, post.comments.build ] do |form| %>
+          <p>
+            <%= form.text_field :body, placeholder:"comment.." %>
+            <%= form.submit %>
+          </p>
+        <% end %>
+      <%end%>
+
+  </ul>
+<% else %>
+  <% redirect_to new_user_session_path%>
+<% end%>

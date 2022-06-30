@@ -3,10 +3,17 @@ class CommentsController < ApplicationController
   def new
   end
 
-  def edit
+  def index
+    @comments = Comment.all
+  end
+ 
+  def create
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.create(comment_params)
+    redirect_to root_path
   end
 
-  def index
+  def edit
   end
 
   def save
@@ -16,5 +23,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def comment_params
+    params.require(:comment).permit(:body)
   end
 end

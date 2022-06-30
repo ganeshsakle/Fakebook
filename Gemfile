@@ -6,6 +6,8 @@ ruby '3.0.2'
 gem 'devise'
 gem 'better_errors', '~> 2.9', '>= 2.9.1'
 
+gem 'acts_as_votable', '~> 0.13.2'
+
 gem 'active_storage_validations', '~> 0.9.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'

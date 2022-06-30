@@ -5,7 +5,8 @@
                 <li>
                 <%= image_tag("images.png",
                 class:"rounded-circle",height:"35") %> 
-                <%= link_to user.name %>
+                <%= link_to user.name%>
+                <%= link_to image_tag("f6bbced354652478430f121f13ca48b8.png", class:"rounded-circle",height:"35"), notifications_url(user.id), method: :post %>
                 </li>
                 <br>
             <%end%>
