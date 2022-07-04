@@ -1,25 +1,21 @@
 <% if user_signed_in? %>
     <ul>
-        <% @posts.each do |post|%>
-            <% if post.user_id == current_user.id %>
+        <% @user.posts.each do |p|%>
                 <li>
                 <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5><%= link_to current_user.name, class:"card-title"%></h5>    
-                            <p class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
-                            <p class="card-text"><%= post.content %></p>
-                            <% if current_user.id == post.user_id%>
-                              <p><%= link_to "Edit", edit_post_url(post.id) %>
-                              <%= link_to "Delete", post_url(post.id), method: :delete %></p>
-                            <%end%>
+                            <p class="card-subtitle mb-2 text-muted"><%= p.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
+                            <p class="card-text"><%= p.content %></p>
+                            <p><%= link_to "Edit", edit_post_url(p.id) %>
+                            <%= link_to "Delete", post_url(p.id), method: :delete %></p>
                         </div>
                 </div>
                 </li>
                 <br>
-            <%end%>
         <%end%>
     </ul>
 <% else %>
-    <% redirect_to new_user_session_path%>
+    <% redirect_to new_user_session_path %>
 <% end%>
 

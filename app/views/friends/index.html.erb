@@ -1,12 +1,14 @@
 <% if user_signed_in? %>
     <ul>
         <% @friends.each do |friend|%>
+           <%# <% if current_user.id != friend.user_id %> 
                 <li>
                 <%= image_tag("images.png",
                 class:"rounded-circle",height:"35") %> 
                 <%= link_to friend.user.name %> <br>
                 <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
                 </li>
+            <%# <%end%> 
                 <br>
         <%end%>
     </ul>

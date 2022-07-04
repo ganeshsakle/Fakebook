@@ -36,10 +36,10 @@
           <%= link_to "Notifications", notifications_path, class:"nav-link"%>
         </li>
         <li class="nav-item">
-          <%= link_to "My posts", post_url(current_user), class:"nav-link"%>
+          <%= link_to "My posts", post_url(current_user.id), class:"nav-link"%>
         </li>
         <li class="nav-item">
-          <%= link_to "Users", users_path, class:"nav-link"%>
+          <%= link_to "Users", static_page_index_path, class:"nav-link"%>
         </li>
       </ul>
       <!-- Left links -->
@@ -60,7 +60,7 @@
             aria-expanded="false" %>
             />
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-               <%=link_to "Profile", users_path(current_user.id), class:"dropdown-item"%>
+                <%=link_to "Profile", static_page_show_path(current_user.id), class:"dropdown-item"%>
                 <%= link_to "Edit", edit_user_registration_path, class:"dropdown-item" %>
                 <%= link_to "Logout", destroy_user_session_path, :method => :delete, class:"dropdown-item"%> 
             </div>

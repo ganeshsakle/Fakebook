@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+    <ul>
+        <% @notifications.each do |notification|%>
+                <li>
+                <%= image_tag("images.png", class:"rounded-circle",height:"35") %> 
+                <%= link_to notification.user.name %> <br>
+                <%= link_to "Accept", friends_path(id: notification.user_id), method: :post, class:"btn btn-success btn-sm"%>
+                <%= link_to "Reject", notification_path(notification.id), method: :delete, class:"btn btn-danger btn-sm" %>
+                </li>
+                <br>
+        <%end%>
+    </ul>
+<% else %>
+    <% redirect_to new_user_session_path%>
+<% end%>

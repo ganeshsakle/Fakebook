@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
-  acts_as_votable
 
+  
+  has_many :likes
   has_many_attached :image
   has_many :comments , dependent: :destroy
   belongs_to :user
@@ -14,6 +15,12 @@ class Post < ApplicationRecord
                     
                     size: { less_than: 5.megabytes,
                     message: "should be less than 5MB" }
+  
+
+
+  # def liked?(user)
+  #   !!self.likes.find{|like| like.user_id == user.id}
+  # end
   
 
 end

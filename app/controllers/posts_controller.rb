@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+
   def new
     @post = Post.new(params[:content])
   end
@@ -10,6 +11,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @friends = Friend.all
   end
 
   def create
@@ -45,7 +47,16 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts =Post.all
+    @user = User.find(params[:id])
+  end
+
+  def like
+    @post = Post.find(params[:id])
+    # byebug
+    @post.like.new(post_id: @post.id, user_id: current_user.id)
+    if @post.save!
+      redirect_to root_path
+    end
   end
 
   private

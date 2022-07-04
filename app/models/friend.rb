@@ -1,4 +1,4 @@
 class Friend < ApplicationRecord
   belongs_to :user
-  has_many :notifications
+  validates :user_id, uniqueness: true
 end

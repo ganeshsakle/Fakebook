@@ -9,9 +9,6 @@ class FriendsController < ApplicationController
 
   def index
     @friends=Friend.all
-    if !current_user
-      redirect_to static_page_new_path
-    end
   end
 
   def save
@@ -34,18 +31,10 @@ class FriendsController < ApplicationController
     redirect_to friends_path
   end
 
-  def notifications
-    @friend =Friend.new(params[:user_id]) 
-    if @friend.save
-      flash[:success]="Request sent!"
-      redirect_to users_path
-    end
-  end
-
   def create
-    @friend = Friend.new(user_id: current_user.id) 
+    @user = User.find(params[:id])
+    @friend = Friend.new(user_id: @user.id, friendid: current_user.id) 
     if @friend.save
-      flash[:success]="Request sent!"
       redirect_to friends_path
     else
       redirect_to friends_path, notice: @friend.errors.full_messages.first
