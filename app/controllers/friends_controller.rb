@@ -9,6 +9,7 @@ class FriendsController < ApplicationController
 
   def index
     @friends=Friend.all
+    @friend_count  = 0
   end
 
   def save

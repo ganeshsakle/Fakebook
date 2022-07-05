@@ -10,13 +10,16 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all #.with_attached_images
     @friends = Friend.all
   end
 
   def create
     @post = Post.new(post_params) 
-    @post.user_id = current_user.id
+    @post.image.attach(params[:post][:image])
+   # @post.user_id = current_user.id
+    # @post.images.attach(params[:post][:images])
+    #byebug
     if @post.save
       flash[:success]="Post created"
       redirect_to root_path
@@ -48,19 +51,11 @@ class PostsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-  end
-
-  def like
-    @post = Post.find(params[:id])
-    # byebug
-    @post.like.new(post_id: @post.id, user_id: current_user.id)
-    if @post.save!
-      redirect_to root_path
-    end
+    @post_count=0
   end
 
   private
     def post_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:content, :image)
     end
 end

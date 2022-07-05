@@ -1,41 +1,62 @@
+<div class="ml-5">
 <% if user_signed_in? %>
   <ul>
       <% @posts.each do |post|%>
         <% if post_friend_checker(post.user_id, @friends)%>
-        <li>
-          <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5><%= link_to post.user.name , class:"card-title"%></h5>    
-                    <p class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
-                    <p class="card-text"><%= post.content %></p>
-                    <% if current_user.id == post.user_id %>
-                      <p><%= link_to "Edit", edit_post_url(post.id) %>
-                      <%= link_to "Delete", post_url(post.id), method: :delete %></p>
-                    <%end%>
-                   <%= button_to 'like', like_path(post.id), method: 'put'%>
+              <li>
+                <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                          <h5><%= link_to post.user.name , static_page_show_path(id: post.user_id) , class:"card-title"%></h5>    
+                          <p class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
+                          <p class="card-text"><%= post.content %></p>
+
+                            <%# if post.image.attached? %>
+                              <%=post.image%>
+                              <%# <img src="<%=(url_for(post.image))%>
+                            <%# end %>
+
+                          <% if current_user.id == post.user_id %>
+                            <p><%= link_to "Edit", edit_post_url(post.id) %>
+                            <%= link_to "Delete", post_url(post.id), method: :delete %></p>
+                          <%end%>
+
+                          <% if post.liked_by?(current_user) %>
+                              <% like = Like.find_by(user_id: current_user.id, post_id: post.id) %>
+                              <%= link_to like_path(like), method: :delete do %>
+                                <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;">
+                                <span><%= post.likes.count %></span>
+                              <% end %>
+                          <% else %>
+                              <%= link_to post_likes_path(post), method: :post do %>
+                                <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: gray;">
+                                <span><%= post.likes.count %></span>
+                              <% end %>
+                          <% end %>
+                      </div>
                 </div>
-          </div>
-        </li>
-        <br>
-        <p>Comments</p>
-        <% post.comments.each do |comment| %>
-          <p>
-            <%=link_to comment.user.name %>
-            <%= comment.body %>
-          </p>
-        <% end %>
+              </li>
+              <br>
+              <p>Comments</p>
+              <% post.comments.each do |comment| %>
+                <p>
+                  <%= link_to comment.user.name, static_page_show_path(id: comment.user_id)  %>
+                  <%= comment.body %>
+                </p>
+              <% end %>
 
-        <%= form_with model: [ post, post.comments.build ] do |form| %>
-          <p>
-            <%= form.text_field :body, placeholder:"comment.." %>
-            <%= form.submit %>
-          </p>
-        <% end %>
+              <%= form_with model: [ post, post.comments.build ] do |form| %>
+                <p>
+                  <%= form.text_field :body, placeholder:"comment.." %>
+                  <%= form.submit %>
+                </p>
+              <% end %>
 
-      <%end%>
-    <%end %>
-    </ul>
-    
+              
+
+        <%end%>
+      <%end %>
+  </ul>
+</div>    
 <% else %>
   <%= render 'layouts/welcome' %>
 <% end%>

@@ -4,7 +4,7 @@
              <% if user.id != current_user.id and user_checker(user) and friend_checker(user,@friends)%>
                 <li>
                 <%= image_tag("images.png", class:"rounded-circle",height:"35") %> 
-                <%= link_to user.name %>
+                <%= link_to user.name, static_page_show_path(id:user.id) %>
                 <%= link_to image_tag("f6bbced354652478430f121f13ca48b8.png", class:"rounded-circle",height:"35"), notifications_path(id: user.id), method: :post %>
                 </li>
                 <br>

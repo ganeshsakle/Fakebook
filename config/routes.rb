@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   # get 'profile/:id', to: 'static_page#show'
   get '/static_page/index'
   get '/static_page/show'
-  put '/post/:id/like' ,to: 'posts#like', as: 'like'
 
   devise_for :users 
 
@@ -35,6 +34,10 @@ Rails.application.routes.draw do
 
   resources :posts do 
     resources :comments
+  end
+  
+  resources :posts, shallow: true do
+    resources :likes, only: [:create, :destroy]
   end
 
 end

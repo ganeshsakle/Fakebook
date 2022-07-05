@@ -2,9 +2,10 @@
     <ul>
         <% @user.posts.each do |p|%>
                 <li>
+                <% @post_count +=1 %>
                 <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <h5><%= link_to current_user.name, class:"card-title"%></h5>    
+                            <h5><%= link_to current_user.name, static_page_show_path(id:current_user.id), class:"card-title"%></h5>    
                             <p class="card-subtitle mb-2 text-muted"><%= p.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
                             <p class="card-text"><%= p.content %></p>
                             <p><%= link_to "Edit", edit_post_url(p.id) %>
@@ -14,6 +15,7 @@
                 </li>
                 <br>
         <%end%>
+        <h5> Total posts <%= @post_count %> </h5>
     </ul>
 <% else %>
     <% redirect_to new_user_session_path %>
