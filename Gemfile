@@ -7,7 +7,13 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'devise'
 gem 'better_errors', '~> 2.9', '>= 2.9.1'
+gem 'will_paginate', '~> 3.3'
 
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
+gem 'image_processing', '~> 1.12', '>= 1.12.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6'
 # Use postgresql as the database for Active Record

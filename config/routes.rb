@@ -19,13 +19,14 @@ Rails.application.routes.draw do
   # get 'posts/destroy'
   root to: 'posts#index'
   get 'home', to: 'static_page#new'
+
   #root to: 'users#sign_up' #'devise/sessions#new'
   # get 'profile' , to: 'static_page#index'
   # get 'profile/:id', to: 'static_page#show'
   get '/static_page/index'
   get '/static_page/show'
 
-  devise_for :users 
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :notifications
   resources :comments

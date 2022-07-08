@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
     <ul>
-        <% @users.each do |user|%>
-             <% if user.id != current_user.id and user_checker(user) and friend_checker(user,@friends)%>
+        <% @users.each do |user| %>
+             <% if user.id != current_user.id %>
                 <li>
                 <%= image_tag("images.png", class:"rounded-circle",height:"35") %> 
                 <%= link_to user.name, static_page_show_path(id:user.id) %>
-                <%= link_to image_tag("f6bbced354652478430f121f13ca48b8.png", class:"rounded-circle",height:"35"), notifications_path(id: user.id), method: :post %>
+                <%= link_to image_tag("f6bbced354652478430f121f13ca48b8.png", class:"rounded-circle",height:"35"), notifications_path(id:user.id), method: :post %>
                 </li>
                 <br>
             <%end%>

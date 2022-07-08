@@ -4,7 +4,8 @@ class StaticPageController < ApplicationController
 
   def index
     @users = User.all
-    @friends=Friend.all
+   # @friends=Friend.all
+    @notifications = Notification.all
   end
 
   def show

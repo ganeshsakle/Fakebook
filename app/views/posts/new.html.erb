@@ -4,7 +4,7 @@
     <%= f.text_area :content , placeholder:"write here.." %> <br>
     <% f.hidden_field :user_id, value: current_user.id%>
     <%= f.label :image %>
-    <%= f.file_field :image, class:"form-control"%>
+    <%= f.file_field :image %><br>
     <%= f.submit "create post", class:"btn btn-primary"%>
   <%end%>
 </div>

@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params) 
     @post.image.attach(params[:post][:image])
-   # @post.user_id = current_user.id
+    @post.user_id = current_user.id
     # @post.images.attach(params[:post][:images])
     #byebug
     if @post.save
@@ -26,9 +26,6 @@ class PostsController < ApplicationController
     else
       redirect_to new_post_path, notice: @post.errors.full_messages.first
     end
-  end
-
-  def save
   end
 
   def update

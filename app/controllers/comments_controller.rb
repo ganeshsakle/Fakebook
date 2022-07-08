@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  def new
-  end
 
   def index
     @comments = Comment.all
@@ -13,18 +11,6 @@ class CommentsController < ApplicationController
     @comment.update(user_id: current_user.id)
     #byebug
     redirect_to root_path
-  end
-
-  def edit
-  end
-
-  def save
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   private

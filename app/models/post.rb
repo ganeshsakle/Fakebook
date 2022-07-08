@@ -2,11 +2,11 @@ class Post < ApplicationRecord
 
   
   has_many :likes, dependent: :destroy
-  has_many_attached :image, dependent: :destroy
+  has_one_attached :image, dependent: :destroy
   has_many :comments , dependent: :destroy
   belongs_to :user
 
-  # default_scope -> { order(created_at: :desc) }
+  default_scope -> { order(created_at: :desc) }
 
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }

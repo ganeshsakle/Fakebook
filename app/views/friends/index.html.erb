@@ -1,19 +1,24 @@
 <% if user_signed_in? %>
-    <ul>
-        <% @friends.each do |friend|%>
-            <% if current_user.id != friend.user_id %> 
-                <li>
-                <%= image_tag("images.png",
-                class:"rounded-circle",height:"35") %> 
-                <%= link_to friend.user.name , static_page_show_path(id: friend.user_id) %> <br>
-                <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
-                <% @friend_count += 1 %>
-                </li>
-            <%end%> 
-                <br>
-        <%end%>
-        <h5> Total Friends <%= @friend_count %></h5>
-    </ul>
+  <% @friends.each do |friend| %>
+    <% if friend.user_id == current_user.id %>
+      <p>
+      <%= image_tag("images.png",class:"rounded-circle",height:"35") %> 
+      <%= link_to friend_name_finder(friend.user_id), static_page_show_path(id: friend.user_id) %> <br>
+      <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
+      <% @friend_count += 1 %>
+      </p>
+      <br>
+    <% else %>
+      <p>
+      <%= image_tag("images.png",class:"rounded-circle",height:"35") %> 
+      <%= link_to friend_name_finder(friend.friendid), static_page_show_path(id: friend.user_id) %> <br>
+      <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
+      <% @friend_count += 1 %>
+      </p>
+      <br>
+    <% end %>
+  <h5> Total Friends <%= @friend_count %> </h5>
+  <% end %>       
 <% else %>
     <% redirect_to new_user_session_path%>
 <% end%>

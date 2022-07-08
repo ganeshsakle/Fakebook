@@ -2,18 +2,17 @@
 <% if user_signed_in? %>
   <ul>
       <% @posts.each do |post|%>
-        <% if post_friend_checker(post.user_id, @friends)%>
+        <% if post_friend_checker(post.user_id, @friends) || post.user_id == current_user.id %>
               <li>
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 31.5rem;">
                       <div class="card-body">
                           <h5><%= link_to post.user.name , static_page_show_path(id: post.user_id) , class:"card-title"%></h5>    
                           <p class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
                           <p class="card-text"><%= post.content %></p>
 
-                            <%# if post.image.attached? %>
-                              <%=post.image%>
-                              <%# <img src="<%=(url_for(post.image))%>
-                            <%# end %>
+                            <% if post.image.attached? %>
+                              <%=(image_tag url_for(post.image), style: "width: 287px; display:block")%>
+                            <%end %>
 
                           <% if current_user.id == post.user_id %>
                             <p><%= link_to "Edit", edit_post_url(post.id) %>
@@ -35,7 +34,7 @@
                       </div>
                 </div>
               </li>
-              <br>
+    
               <p>Comments</p>
               <% post.comments.each do |comment| %>
                 <p>
@@ -50,7 +49,7 @@
                   <%= form.submit %>
                 </p>
               <% end %>
-
+             <br>
               
 
         <%end%>
