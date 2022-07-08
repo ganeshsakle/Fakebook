@@ -1,7 +1,6 @@
 class NotificationsController < ApplicationController
   def index
     @notifications = Notification.all
-    @users = User.all
   end
 
   def show

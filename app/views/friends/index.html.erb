@@ -1,25 +1,26 @@
+<div class="ml-5">
 <% if user_signed_in? %>
   <% @friends.each do |friend| %>
     <% if friend.user_id == current_user.id %>
       <p>
       <%= image_tag("images.png",class:"rounded-circle",height:"35") %> 
-      <%= link_to friend_name_finder(friend.user_id), static_page_show_path(id: friend.user_id) %> <br>
+      <%= link_to friend_name_finder(friend.friendid), static_page_show_path(id: friend.user_id) %> <br>
       <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
-      <% @friend_count += 1 %>
       </p>
       <br>
     <% else %>
       <p>
       <%= image_tag("images.png",class:"rounded-circle",height:"35") %> 
-      <%= link_to friend_name_finder(friend.friendid), static_page_show_path(id: friend.user_id) %> <br>
+      <%= link_to friend.user.name, static_page_show_path(id: friend.user_id) %> <br>
       <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
-      <% @friend_count += 1 %>
       </p>
       <br>
+      <% @friend_count += 1 %>
     <% end %>
-  <h5> Total Friends <%= @friend_count %> </h5>
-  <% end %>       
+  <% end %>   
+  <h5> Total Friends <%= @friend_count %> </h5>    
 <% else %>
     <% redirect_to new_user_session_path%>
 <% end%>
+</div>
 

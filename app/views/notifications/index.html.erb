@@ -1,10 +1,10 @@
 <%  if user_signed_in? %>
     <ul>
         <% @notifications.each do |notification|%>
-                <% if notification.user_id == current_user.id %>
+                <% if notification.requestor != current_user.id %>
                     <li>
                     <%= image_tag("images.png", class:"rounded-circle",height:"35") %>
-                    <%= link_to name_finder(notification.requestor), static_page_show_path(id: notification.user_id) %> <br>
+                    <%= link_to notification.user.name, static_page_show_path(id: notification.user_id) %> <br>
                     
                     <%= link_to "Accept", friends_path(id:notification.requestor), method: :post, class:"btn btn-success btn-sm"%>
                     <%= link_to "Reject", notification_path(notification.id), method: :delete, class:"btn btn-danger btn-sm"%>
@@ -12,7 +12,7 @@
                 <% elsif notification.requestor == current_user.id%>
                     <li>
                     <%= image_tag("images.png", class:"rounded-circle",height:"35") %> 
-                    <%= link_to notification.user.name ,static_page_show_path(id: notification.user_id) %><br>
+                    <%= link_to notification.user.name,static_page_show_path(id: notification.user_id) %><br>
                     <%= link_to "cancel request", notification_path(notification.id), method: :delete, class:"btn btn-danger btn-sm"%>
                     </li>
                 <% end %> 

@@ -1,8 +1,8 @@
 module NotificationsHelper
 
    def name_finder(id)
-    @name = @users.find(id)
-    return @name.name
+    user = User.find(id)
+    return user.name
    end
 
 end

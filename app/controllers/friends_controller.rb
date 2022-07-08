@@ -7,7 +7,7 @@ class FriendsController < ApplicationController
   end
 
   def index
-    @friends =current_user.friends.all
+    @friends =Friend.all
     @friend_count  = 0
   end
 
