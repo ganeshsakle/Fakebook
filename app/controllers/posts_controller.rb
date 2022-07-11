@@ -34,7 +34,8 @@ class PostsController < ApplicationController
         flash[:success]="Post Updated"
         redirect_to root_path
       else
-        redirect_to edit_post_path, notice: @post.errors.full_messages.first
+        flash[:error] = @post.errors.full_messages.first
+        redirect_to edit_post_path
       end
   end
 

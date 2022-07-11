@@ -12,12 +12,15 @@ class NotificationsController < ApplicationController
     if current_user.id != @user.id
       @notification = Notification.new(user_id: @user.id, requestor_id: current_user.id)
       if @notification.save
-        redirect_to static_page_index_path , notice: "request sent!"
+        flash[:success] = "request sent!"
+        redirect_to static_page_index_path
       else
-        redirect_to static_page_index_path, notice: "request already sent."
+        flash[:notice]= "request already sent."
+        redirect_to static_page_index_path
       end
     else
-      redirect_to static_page_index_path, notice: "request can't sent."
+      flash[:warn] = "request can't sent."
+      redirect_to static_page_index_path
     end
   end
 
