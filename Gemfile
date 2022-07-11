@@ -7,7 +7,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'devise'
 gem 'better_errors', '~> 2.9', '>= 2.9.1'
-gem 'will_paginate', '~> 3.3'
+
+gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'

@@ -1,23 +1,24 @@
 <div class="ml-5">
 <% if user_signed_in? %>
+<ul>
   <% @friends.each do |friend| %>
-    <% if friend.user_id == current_user.id %>
-      <p>
+    <% if friend.friend_id != current_user.id and friend.user_id == current_user.id%>
+      <li>
       <%= image_tag("images.png",class:"rounded-circle",height:"35") %> 
-      <%= link_to friend_name_finder(friend.friendid), static_page_show_path(id: friend.user_id) %> <br>
+      <%= link_to friend_name_finder(friend. friend_id), static_page_show_path(id: friend.friend_id) %> <br>
       <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
-      </p>
-      <br>
-    <% else %>
-      <p>
-      <%= image_tag("images.png",class:"rounded-circle",height:"35") %> 
-      <%= link_to friend.user.name, static_page_show_path(id: friend.user_id) %> <br>
-      <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
-      </p>
-      <br>
+      </li>
       <% @friend_count += 1 %>
-    <% end %>
+    <% elsif friend.user_id != current_user.id and friend.friend_id == current_user.id%>
+      <li>
+      <%= image_tag("images.png",class:"rounded-circle",height:"35") %> 
+      <%= link_to friend_name_finder(friend.user_id), static_page_show_path(id: friend.user_id) %> <br>
+      <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
+      </li>
+      <% @friend_count += 1 %>
+    <%end %>
   <% end %>   
+</ul>
   <h5> Total Friends <%= @friend_count %> </h5>    
 <% else %>
     <% redirect_to new_user_session_path%>

@@ -1,3 +1,4 @@
+<div class="ml-5">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -35,6 +36,11 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :"profile picture" %><br />
+    <%= f.file_field :avatar %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
@@ -45,3 +51,4 @@
 
 <%= link_to "Back", :back %>
 <%= link_to "logout", destroy_user_session_path,  :method => :delete %>
+</div>

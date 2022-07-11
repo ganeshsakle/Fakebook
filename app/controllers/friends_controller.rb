@@ -1,21 +1,13 @@
 class FriendsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_friend, only: %i[update destroy]
-
-  def new
-    @friend = Friend.new(params[:user_id])
-  end
 
   def index
     @friends =Friend.all
     @friend_count  = 0
   end
 
-  def update
-  end
-
   def destroy
-    @friend = set_friend          # Friend.find(params[:id])
+    @friend = Friend.find(params[:id])       # Friend.find(params[:id])
     @friend.delete
     flash[:success]="unfriend!"
     redirect_to friends_path
@@ -23,18 +15,13 @@ class FriendsController < ApplicationController
 
   def create
     @user = User.find(params[:id])
-   # byebug
+    @notification = Notification.find(params[:not_id])
     if @user.id == current_user.id
-      redirect_to friends_path, notice: @friend.errors.full_messages.first
+      redirect_to friends_path, notice: "some error occured"
     else
-      current_user.friends.create(user_id: @user.id, friendid: current_user.id)
-      redirect_to friends_path
+      current_user.friends.create(user_id: current_user.id, friend_id: @user.id)
+      @notification.delete
+      redirect_to friends_path, notice: "Request accepted successfully."
     end
-  end
-
-  private
-
-  def set_friend
-    @friend = Friend.find(params[:id])
   end
 end

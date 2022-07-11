@@ -1,5 +1,5 @@
-class AddRequestorToNotifications < ActiveRecord::Migration[6.1]
+class Addrequestor_idToNotifications < ActiveRecord::Migration[6.1]
   def change
-    add_column :notifications, :requestor, :bigint
+    add_column :notifications, :requestor_id, :bigint
   end
 end

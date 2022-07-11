@@ -1,4 +1,4 @@
 class Friend < ApplicationRecord
   belongs_to :user
-  validates :user_id, uniqueness: true
+  #validates :user_id, :friend_id, uniqueness: true
 end

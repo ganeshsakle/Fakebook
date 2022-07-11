@@ -6,7 +6,9 @@
               <li>
                 <div class="card" style="width: 31.5rem;">
                       <div class="card-body">
-                          <h5><%= link_to post.user.name , static_page_show_path(id: post.user_id) , class:"card-title"%></h5>    
+                           <h5><%= image_tag("images.png", class:"rounded-circle",height:"35") %>
+                           <%= link_to post.user.name , static_page_show_path(id: post.user_id) , class:"card-title"%>
+                           </h5>    
                           <p class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
                           <p class="card-text"><%= post.content %></p>
 

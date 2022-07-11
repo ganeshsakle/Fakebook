@@ -3,7 +3,7 @@ class StaticPageController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.page params[:page]
    # @friends=Friend.all
     @notifications = Notification.all
   end
