@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2022_07_08_131350) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "requestor_id_id"
+    t.bigint "requestor_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
