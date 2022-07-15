@@ -3,8 +3,3 @@ class AddFriendIdToFriends < ActiveRecord::Migration[6.1]
     add_column :friends, :friend_id, :bigint
   end
 end
-# class AddFriendIdToFriends < ActiveRecord::Migration[6.1]
-#   def change
-#     add_column :friends, :friend_id, :bigint
-#   end
-# end
