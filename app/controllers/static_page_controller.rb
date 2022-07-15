@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class StaticPageController < ApplicationController
-  def new
-  end
+  def new; end
 
   def index
     @users = User.page params[:page]
-   # @friends=Friend.all
     @notifications = Notification.all
   end
 

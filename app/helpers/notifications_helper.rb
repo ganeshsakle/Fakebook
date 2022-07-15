@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 module NotificationsHelper
-
-   def name_finder(id)
+  def name_finder(id)
     user = User.find(id)
-    return user.name
-   end
-
+    user.name
+  end
 end

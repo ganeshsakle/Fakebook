@@ -1,4 +1,6 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
+
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -53,7 +55,7 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -88,8 +90,8 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
@@ -117,17 +119,20 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
-  config.action_mailer.delivery_method = :smtp
-  #replace with your own url
-  config.action_mailer.default_url_options = { host: "https://ronchon-maison-91889.herokuapp.com" }
+  # replace with your own url
+  config.action_mailer.default_url_options = { host: 'https://ronchon-maison-91889.herokuapp.com' }
   # SMTP settings for gmail
+  config.active_record.dump_schema_after_migration = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true 
+  config.action_mailer.raise_delivery_errors = false
+  
   config.action_mailer.smtp_settings = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :user_name            => "tweetapp4@gmail.com",
-  :password             => "baisaqpcyhpyvnil",
-  :authentication       => "plain",
-  :enable_starttls_auto => true
-}
-
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: 'tweetapp4@gmail.com',
+    password: 'baisaqpcyhpyvnil',
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 end

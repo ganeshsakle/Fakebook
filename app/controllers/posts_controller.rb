@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
@@ -10,18 +12,16 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all #.with_attached_images
+    @posts = Post.all
     @friends = Friend.all
   end
 
   def create
-    @post = Post.new(post_params) 
+    @post = Post.new(post_params.merge!(user: current_user))
     @post.image.attach(params[:post][:image])
-    @post.user_id = current_user.id
-    # @post.images.attach(params[:post][:images])
-    #byebug
+
     if @post.save
-      flash[:success]="Post created"
+      flash[:success] = 'Post created'
       redirect_to root_path
     else
       redirect_to new_post_path, notice: @post.errors.full_messages.first
@@ -30,30 +30,33 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-      if @post.update(post_params)
-        flash[:success]="Post Updated"
-        redirect_to root_path
-      else
-        flash[:error] = @post.errors.full_messages.first
-        redirect_to edit_post_path
-      end
+
+    if @post.update(post_params)
+      flash[:success] = 'Post Updated'
+      redirect_to root_path
+    else
+      flash[:error] = @post.errors.full_messages.first
+      redirect_to edit_post_path
+    end
   end
 
   def destroy
     @post = Post.find(params[:id])
+
     if @post.destroy
-      flash[:success]="Post deleted successfully!"
+      flash[:success] = 'Post deleted successfully!'
       redirect_to posts_path
     end
   end
 
   def show
     @user = User.find(params[:id])
-    @post_count=0
+    @post_count = 0
   end
 
   private
-    def post_params
-      params.require(:post).permit(:content, :image)
-    end
+
+  def post_params
+    params.require(:post).permit(:content, :image)
+  end
 end

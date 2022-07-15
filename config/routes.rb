@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # get 'friends/new'
   # get 'friends/edit'
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   get 'home', to: 'static_page#new'
 
-  #root to: 'users#sign_up' #'devise/sessions#new'
+  # root to: 'users#sign_up' #'devise/sessions#new'
   # get 'profile' , to: 'static_page#index'
   # get 'profile/:id', to: 'static_page#show'
   get '/static_page/index'
@@ -32,13 +34,11 @@ Rails.application.routes.draw do
   resources :comments
   resources :friends
 
-
-  resources :posts do 
+  resources :posts do
     resources :comments
   end
-  
-  resources :posts, shallow: true do
-    resources :likes, only: [:create, :destroy]
-  end
 
+  resources :posts, shallow: true do
+    resources :likes, only: %i[create destroy]
+  end
 end
