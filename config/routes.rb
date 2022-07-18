@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/static_page/index'
   get '/static_page/show'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: "confirmations" }
+  devise_for :users, controllers: {  confirmations: 'users/confirmations' , omniauth_callbacks: 'users/omniauth_callbacks'}
 
   resources :notifications
   resources :comments
