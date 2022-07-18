@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-module FriendsHelper
-  def friend_name_finder(user_id)
-    a = User.find(user_id)
+  def friend_name_finder(id)
+    a = User.find(id)
     a.name
   end
-end
