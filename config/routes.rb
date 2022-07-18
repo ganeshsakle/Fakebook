@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   # get '/static_page/index',to: 'static_page#index', as: '/users'
   # get '/static_page/:id', to: 'static_page#show', as: '/user'
 
-  devise_for :users
   devise_for :users, controllers: {  confirmations: 'users/confirmations' , omniauth_callbacks: 'users/omniauth_callbacks'}
 
   resources :notifications
