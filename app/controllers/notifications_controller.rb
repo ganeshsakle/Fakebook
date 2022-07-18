@@ -17,7 +17,7 @@ class NotificationsController < ApplicationController
     else
       flash[:warn] = "request can't sent."
     end
-    redirect_to static_page_index_path
+    redirect_to users_path
   end
 
   def destroy
