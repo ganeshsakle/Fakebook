@@ -7,7 +7,7 @@
                 <div class="card" style="width: 31.5rem;">
                       <div class="card-body">
                            <h5><%= image_tag("images.png", class:"rounded-circle",height:"35") %>
-                           <%= link_to post.user.name , users_path(id: post.user_id) , class:"card-title"%>
+                           <%= link_to post.user.name , user_path(id: post.user_id) , class:"card-title"%>
                            </h5>    
                           <p class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
                           <p class="card-text"><%= post.content %></p>
@@ -40,7 +40,7 @@
               <p>Comments</p>
               <% post.comments.each do |comment| %>
                 <p>
-                  <%= link_to comment.user.name, users_path(id: comment.user_id)  %>
+                  <%= link_to comment.user.name, user_path(id: comment.user_id)  %>
                   <%= comment.body %>
                 </p>
               <% end %>

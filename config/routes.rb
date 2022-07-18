@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'home', to: 'static_page#new'
 
   get '/users', to: 'static_page#index'
-  get '/user/:id', to: 'static_page#show'
+  get '/user', to: 'static_page#show'
   # get '/static_page/index',to: 'static_page#index', as: '/users'
   # get '/static_page/:id', to: 'static_page#show', as: '/user'
 
