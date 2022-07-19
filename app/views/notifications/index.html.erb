@@ -4,14 +4,14 @@
                 <% if notification.requestor_id != current_user.id and notification.user_id == current_user.id %>
                     <li>
                     <%= image_tag("images.png", class:"rounded-circle",height:"35") %>
-                    <%= link_to name_finder(notification.requestor_id), user_path(id: notification.requestor_id) %> <br>
+                    <%= link_to name_finder(notification.requestor_id), users_path(id: notification.requestor_id) %> <br>
                     <%= link_to "Accept", friends_path(id: notification.requestor_id,not_id:notification.id), method: :post, class:"btn btn-success btn-sm"%>
                     <%= link_to "Reject", notification_path(notification.id), method: :delete, class:"btn btn-danger btn-sm"%>
                     </li>
                 <% elsif notification.user_id != current_user.id and notification.requestor_id == current_user.id%>
                     <li>
                     <%= image_tag("images.png", class:"rounded-circle",height:"35") %> 
-                    <%= link_to name_finder(notification.user_id), user_path(id: notification.user_id) %><br>
+                    <%= link_to name_finder(notification.user_id), users_path(id: notification.user_id) %><br>
                     <%= link_to "cancel request", notification_path(notification.id), method: :delete, class:"btn btn-danger btn-sm"%>
                     </li>
                 <% end %> 

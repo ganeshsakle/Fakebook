@@ -3,10 +3,11 @@
 Rails.application.routes.draw do
 
   root to: 'posts#index'
-  get 'home', to: 'static_page#new'
 
   get '/users', to: 'static_page#index'
-  get '/user', to: 'static_page#show'
+  get '/user/:id', to: 'static_page#show'
+  get 'home', to: 'static_page#new'
+ 
   # get '/static_page/index',to: 'static_page#index', as: '/users'
   # get '/static_page/:id', to: 'static_page#show', as: '/user'
 
