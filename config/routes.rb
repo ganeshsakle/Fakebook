@@ -2,8 +2,12 @@
 
 Rails.application.routes.draw do
 
-  root to: 'posts#index'
+  devise_for :users, controllers: {  
+    confirmations: 'users/confirmations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
+  root to: 'posts#index'
   get '/users', to: 'static_page#index'
   get '/user/:id', to: 'static_page#show'
   get 'home', to: 'static_page#new'
@@ -11,7 +15,6 @@ Rails.application.routes.draw do
   # get '/static_page/index',to: 'static_page#index', as: '/users'
   # get '/static_page/:id', to: 'static_page#show', as: '/user'
 
-  devise_for :users, controllers: {  confirmations: 'users/confirmations' , omniauth_callbacks: 'users/omniauth_callbacks'}
 
   resources :notifications
   resources :comments
