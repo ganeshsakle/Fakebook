@@ -5,14 +5,14 @@
     <% if friend.friend_id != current_user.id and friend.user_id == current_user.id%>
       <li>
       <%= image_tag("images.png",class:"rounded-circle",height:"35") %> 
-      <%= link_to friend_name_finder(friend.friend_id), users_path(id: friend.friend_id) %> <br>
+      <%= link_to friend_name_finder(friend.friend_id), user_path(id: friend.friend_id) %> <br>
       <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
       </li>
       <% @friend_count += 1 %>
     <% elsif friend.user_id != current_user.id and friend.friend_id == current_user.id%>
       <li>
       <%= image_tag("images.png",class:"rounded-circle",height:"35") %> 
-      <%= link_to friend_name_finder(friend.user_id), users_path(id: friend.user_id) %> <br>
+      <%= link_to friend_name_finder(friend.user_id), user_path(id: friend.user_id) %> <br>
       <%= link_to "un-friend", friend_path(friend.id), method: :delete, class:"btn btn-danger btn-sm"%>
       </li>
       <% @friend_count += 1 %>

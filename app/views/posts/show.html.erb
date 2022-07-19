@@ -6,7 +6,7 @@
                 <% @post_count += 1 %>
                 <div class="card" style="width: 31.5rem;">
                         <div class="card-body">
-                            <h5><%= link_to current_user.name, users_path(id:current_user.id), class:"card-title"%></h5>    
+                            <h5><%= link_to current_user.name, user_path(id:current_user.id), class:"card-title"%></h5>    
                             <p class="card-subtitle mb-2 text-muted"><%= p.created_at.strftime("at %I:%M%p %m/%d/%Y") %></p>
                             <p class="card-text"><%= p.content %></p>
                             <% if p.image.attached? %>
