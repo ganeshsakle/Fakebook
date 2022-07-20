@@ -120,7 +120,7 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   # replace with your own url
-  config.action_mailer.default_url_options = { host: 'https://ronchon-maison-91889.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'https://fakebook-2022.herokuapp.com' }
   # SMTP settings for gmail
   config.active_record.dump_schema_after_migration = false
   config.action_mailer.delivery_method = :smtp
